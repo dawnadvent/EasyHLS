@@ -21,7 +21,7 @@
 #define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
 
 Easy_HLS_Handle fHlsHandle = 0;
-Easy_RTSP_Handle fNVSHandle = 0;
+Easy_RTSP_Handle fRTSPHandle = 0;
 
 /* NVSource从RTSPClient获取数据后回调给上层 */
 int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, char *pbuf, RTSP_FRAME_INFO *frameinfo)
@@ -72,16 +72,16 @@ int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, cha
 int main()
 {
 	//创建NVSource
-	EasyRTSP_Init(&fNVSHandle);
-	if (NULL == fNVSHandle) return 0;
+	EasyRTSP_Init(&fRTSPHandle);
+	if (NULL == fRTSPHandle) return 0;
 
 	unsigned int mediaType = MEDIA_TYPE_VIDEO;
 	//mediaType |= MEDIA_TYPE_AUDIO;	//换为NVSource, 屏蔽声音
 	
 	//设置数据回调处理
-	EasyRTSP_SetCallback(fNVSHandle, __NVSourceCallBack);
+	EasyRTSP_SetCallback(fRTSPHandle, __NVSourceCallBack);
 	//打开RTSP流
-	EasyRTSP_OpenStream(fNVSHandle, 0, RTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
+	EasyRTSP_OpenStream(fRTSPHandle, 0, RTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
 
 	//创建EasyHLS Session
 	fHlsHandle = EasyHLS_Session_Create(PLAYLIST_CAPACITY, ALLOW_CACHE, M3U8_VERSION);
@@ -100,9 +100,9 @@ int main()
     EasyHLS_Session_Release(fHlsHandle);
     fHlsHandle = 0;
    
-	EasyRTSP_CloseStream(fNVSHandle);
-	EasyRTSP_Deinit(&fNVSHandle);
-	fNVSHandle = NULL;
+	EasyRTSP_CloseStream(fRTSPHandle);
+	EasyRTSP_Deinit(&fRTSPHandle);
+	fRTSPHandle = NULL;
 
     return 0;
 }
