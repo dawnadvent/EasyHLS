@@ -7,7 +7,7 @@
 #define _CRTDBG_MAP_ALLOC
 #include <stdio.h>
 #include "EasyHLSAPI.h"
-#include "EasyNVSourceAPI.h"
+#include "EasyRTSPClientAPI.h"
 #include <windows.h>
 
 #define RTSPURL "rtsp://admin:admin@192.168.1.108/"
@@ -21,10 +21,10 @@
 #define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
 
 Easy_HLS_Handle fHlsHandle = 0;
-Easy_NVS_Handle fNVSHandle = 0;
+Easy_RTSP_Handle fNVSHandle = 0;
 
 /* NVSource从RTSPClient获取数据后回调给上层 */
-int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, char *pbuf, NVS_FRAME_INFO *frameinfo)
+int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, char *pbuf, RTSP_FRAME_INFO *frameinfo)
 {
 	if (NULL != frameinfo)
 	{
@@ -72,16 +72,16 @@ int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, cha
 int main()
 {
 	//创建NVSource
-	EasyNVS_Init(&fNVSHandle);
+	EasyRTSP_Init(&fNVSHandle);
 	if (NULL == fNVSHandle) return 0;
 
 	unsigned int mediaType = MEDIA_TYPE_VIDEO;
 	//mediaType |= MEDIA_TYPE_AUDIO;	//换为NVSource, 屏蔽声音
 	
 	//设置数据回调处理
-	EasyNVS_SetCallback(fNVSHandle, __NVSourceCallBack);
+	EasyRTSP_SetCallback(fNVSHandle, __NVSourceCallBack);
 	//打开RTSP流
-	EasyNVS_OpenStream(fNVSHandle, 0, RTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
+	EasyRTSP_OpenStream(fNVSHandle, 0, RTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
 
 	//创建EasyHLS Session
 	fHlsHandle = EasyHLS_Session_Create(PLAYLIST_CAPACITY, ALLOW_CACHE, M3U8_VERSION);
@@ -100,8 +100,8 @@ int main()
     EasyHLS_Session_Release(fHlsHandle);
     fHlsHandle = 0;
    
-	EasyNVS_CloseStream(fNVSHandle);
-	EasyNVS_Deinit(&fNVSHandle);
+	EasyRTSP_CloseStream(fNVSHandle);
+	EasyRTSP_Deinit(&fNVSHandle);
 	fNVSHandle = NULL;
 
     return 0;
