@@ -10,7 +10,7 @@
 #include "EasyRTSPClientAPI.h"
 #include <windows.h>
 
-#define RTSPURL "rtsp://admin:admin@192.168.1.108/"
+#define RTSPURL "rtsp://218.107.17.164:6880/stream5"
 
 #define PLAYLIST_CAPACITY	4
 #define	ALLOW_CACHE			false
@@ -53,7 +53,8 @@ int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, cha
 	else if (_mediatype == MEDIA_TYPE_AUDIO)
 	{
 		printf("Get Audio Len:%d tm:%d rtp:%d\n", frameinfo->length, frameinfo->timestamp_sec, frameinfo->rtptimestamp);
-		// 暂时不对音频进行处理
+		if (frameinfo->codec == AUDIO_CODEC_MP4A)
+			EasyHLS_AudioMux(fHlsHandle, (unsigned char*)pbuf, frameinfo->length, frameinfo->rtptimestamp);
 	}
 	else if (_mediatype == MEDIA_TYPE_EVENT)
 	{
