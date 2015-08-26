@@ -10,7 +10,7 @@
 #include "EasyRTSPClientAPI.h"
 #include <windows.h>
 
-#define RTSPURL "rtsp://218.107.17.164:6880/stream5"
+#define RTSPURL "rtsp://a2047.v1412b.c1412.g.vq.akamaistream.net/5/2047/1412/1_h264_350/1a1a1ae555c531960166df4dbc3095c327960d7be756b71b49aa1576e344addb3ead1a497aaedf11/8848125_1_350.mov"
 
 #define PLAYLIST_CAPACITY	4
 #define	ALLOW_CACHE			false
