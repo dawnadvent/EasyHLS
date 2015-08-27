@@ -10,7 +10,7 @@
 #include "EasyRTSPClientAPI.h"
 #include <windows.h>
 
-#define RTSPURL "rtsp://a2047.v1412b.c1412.g.vq.akamaistream.net/5/2047/1412/1_h264_350/1a1a1ae555c531960166df4dbc3095c327960d7be756b71b49aa1576e344addb3ead1a497aaedf11/8848125_1_350.mov"
+#define RTSPURL "rtsp://218.107.17.164:6880/stream5"//rtsp://115.29.139.20:8554/demo.mp4 rtsp://218.107.17.164:6880/stream5
 
 #define PLAYLIST_CAPACITY	4
 #define	ALLOW_CACHE			false
@@ -36,8 +36,10 @@ int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, cha
 
 	if (_mediatype == MEDIA_TYPE_VIDEO)
 	{
-		printf("Get %s Video Len:%d tm:%d rtp:%d\n",frameinfo->type==FRAMETYPE_I?"I":"P", frameinfo->length, frameinfo->timestamp_sec, frameinfo->rtptimestamp);
-	
+		unsigned long long llPTS = (frameinfo->timestamp_sec%1000000)*1000 + frameinfo->timestamp_usec/1000;	
+
+		printf("Get %s Video \tLen:%d \ttm:%u.%u \t%u\n",frameinfo->type==FRAMETYPE_I?"I":"P", frameinfo->length, frameinfo->timestamp_sec, frameinfo->timestamp_usec, llPTS);
+
 		unsigned int uiFrameType = 0;
 		if (frameinfo->type == FRAMETYPE_I)
 		{
@@ -48,13 +50,19 @@ int Easy_APICALL __NVSourceCallBack( int _chid, int *_chPtr, int _mediatype, cha
 			uiFrameType = TS_TYPE_PES_VIDEO_P_FRAME;
 		}
 
-		EasyHLS_VideoMux(fHlsHandle, uiFrameType, (unsigned char*)pbuf, frameinfo->length, frameinfo->rtptimestamp, frameinfo->rtptimestamp, frameinfo->rtptimestamp);
+		EasyHLS_VideoMux(fHlsHandle, uiFrameType, (unsigned char*)pbuf, frameinfo->length, llPTS*90, llPTS*90, llPTS*90);
 	}
 	else if (_mediatype == MEDIA_TYPE_AUDIO)
 	{
-		printf("Get Audio Len:%d tm:%d rtp:%d\n", frameinfo->length, frameinfo->timestamp_sec, frameinfo->rtptimestamp);
+
+		unsigned long long llPTS = (frameinfo->timestamp_sec%1000000)*1000 + frameinfo->timestamp_usec/1000;	
+
+		printf("Get Audio \tLen:%d \ttm:%u.%u \t%u\n", frameinfo->length, frameinfo->timestamp_sec, frameinfo->timestamp_usec, llPTS);
+
 		if (frameinfo->codec == AUDIO_CODEC_MP4A)
-			EasyHLS_AudioMux(fHlsHandle, (unsigned char*)pbuf, frameinfo->length, frameinfo->rtptimestamp);
+		{
+			EasyHLS_AudioMux(fHlsHandle, (unsigned char*)pbuf, frameinfo->length, llPTS*90, llPTS*90);
+		}
 	}
 	else if (_mediatype == MEDIA_TYPE_EVENT)
 	{
