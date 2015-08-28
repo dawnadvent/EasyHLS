@@ -8,8 +8,11 @@
 #include <stdio.h>
 #include "EasyHLSAPI.h"
 #include "EasyRTSPClientAPI.h"
+#ifndef _WIN32
+#include <unistd.h>
+#else
 #include <windows.h>
-
+#endif
 #define RTSPURL "rtsp://218.107.17.164:6880/stream5"//rtsp://115.29.139.20:8554/demo.mp4 rtsp://218.107.17.164:6880/stream5
 
 #define PLAYLIST_CAPACITY	4
@@ -103,7 +106,11 @@ int main()
 
 	while(1)
 	{
+#ifndef _WIN32
+        usleep(10*1000);
+#else
 		Sleep(10);	
+#endif
 	};
 
     EasyHLS_Session_Release(fHlsHandle);

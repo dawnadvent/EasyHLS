@@ -6,7 +6,11 @@
 */
 #include <stdio.h>
 #include "EasyHLSAPI.h"
+#ifndef _WIN32
+#include <unistd.h>
+#else
 #include <windows.h>
+#endif
 #include "hi_type.h"
 #include "hi_net_dev_sdk.h"
 #include "hi_net_dev_errors.h"
@@ -141,7 +145,11 @@ int main()
 
 	while(1)
 	{
+#ifndef _WIN32
+        usleep(10*1000);
+#else
 		Sleep(10);	
+#endif
 	};
 
     EasyHLS_Session_Release(fHlsHandle);
