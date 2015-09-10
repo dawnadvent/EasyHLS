@@ -15,8 +15,8 @@
 #include "hi_net_dev_sdk.h"
 #include "hi_net_dev_errors.h"
 
-#define CHOST	"192.168.1.106"		//EasyCamera摄像机IP地址
-#define CPORT	80					//EasyCamera摄像机端口
+#define CHOST	"192.168.66.189"	//EasyDarwin摄像机IP地址
+#define CPORT	80					//EasyDarwin摄像机端口
 #define CNAME	"admin"
 #define CPWORD	"admin"
 
