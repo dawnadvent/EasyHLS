@@ -31,7 +31,7 @@ EasyHLS_API int Easy_APICALL EasyHLS_VideoMux(Easy_HLS_Handle handle, unsigned i
 	
 </pre>
 其中pcr、dts、pts等参数都是unsigned long long型，通常情况下为时间戳（ms毫秒）*90以后的结果，所以我们通常需要定义：
-unsigned long long pcr,dts,pts = timestamp*90; ***千万不要定义unsigned int型接收数据输入！***具体过程参考上面的几个示例；
+unsigned long long pcr,dts,pts = timestamp\*90; ***千万不要定义unsigned int型接收数据输入！***具体过程参考上面的几个示例；
 
 
 ----------
@@ -42,6 +42,6 @@ unsigned long long pcr,dts,pts = timestamp*90; ***千万不要定义unsigned int
 
 WEB：[www.EasyDarwin.org](http://www.easydarwin.org)
 
-Copyright (c) EasyDarwin.org 2012-2015
+Copyright &copy; EasyDarwin.org 2012-2015
 
 ![EasyDarwin](http://www.easydarwin.org/skin/easydarwin/images/wx_qrcode.jpg)
