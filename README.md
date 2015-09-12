@@ -1,8 +1,8 @@
-## EasyHLS ##
+# EasyHLS #
 
-### EasyHLS是什么？ ###
+EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非常简单，只需要传入打包的文件名、切片存放的目录、单个切片时长以及切片数等参数，EasyHLS库就能轻松将H264+AAC的流媒体切片成m3u8+ts，提供给WEB服务器进行HLS流媒体发布；
 
-EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非常简单，只需要传入打包的文件名、切片存放的目录、单个切片时长以及切片数等参数，EasyHLS库就能轻松将H264+AAC的流媒体切片成m3u8+ts，提供给WEB服务器进行HLS流媒体发布，我们提供了多个调用示例：
+## 调用示例 ##
 
 - **EasyHLS_RTSP**：通过RTSPClient将RTSP URL的流媒体音视频数据获取、并进行ts打包，提供HLS直播；
 
@@ -20,11 +20,11 @@ EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非
 
 - **EasyDarwin**：您也可以参考EasyDarwin中EasyHLSSession对EasyHLS库的调用方法，详细请看：[https://github.com/EasyDarwin/EasyDarwin](https://github.com/EasyDarwin/EasyDarwin "EasyDarwin")；
 
-### 调用过程 ###
+## 调用过程 ##
 ![](http://www.easydarwin.org/skin/easydarwin/images/easyhls20150811.png)
 
 
-### 特殊说明 ###
+## 特殊说明 ##
 <pre>
 /* 打包H264视频 */
 EasyHLS_API int Easy_APICALL EasyHLS_VideoMux(Easy_HLS_Handle handle, unsigned int uiFrameType, unsigned char *data, int dataLength, unsigned long long pcr, unsigned long long pts, unsigned long long dts);
@@ -34,9 +34,7 @@ EasyHLS_API int Easy_APICALL EasyHLS_VideoMux(Easy_HLS_Handle handle, unsigned i
 unsigned long long pcr,dts,pts = timestamp\*90; 千万不要定义unsigned int型接收数据输入！具体过程参考上面的几个示例；
 
 
-----------
-
-### 获取更多信息 ###
+## 获取更多信息 ##
 
 邮件：[support@easydarwin.org](mailto:support@easydarwin.org) 
 
