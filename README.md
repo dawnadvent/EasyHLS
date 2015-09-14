@@ -20,6 +20,9 @@ EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非
 
 - **EasyDarwin**：您也可以参考EasyDarwin中EasyHLSSession对EasyHLS库的调用方法，详细请看：[https://github.com/EasyDarwin/EasyDarwin](https://github.com/EasyDarwin/EasyDarwin "EasyDarwin")；
 
+- **我们同时提供Windows、Linux、ARM版本的libEasyHLS库**：arm版本请将交叉编译工具链发送至[support@easydarwin.org](mailto:support@easydarwin.org "EasyDarwin mail")，我们会帮您具体编译
+
+
 ## 调用过程 ##
 ![](http://www.easydarwin.org/skin/easydarwin/images/easyhls20150811.png)
 
