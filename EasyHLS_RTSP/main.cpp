@@ -13,7 +13,7 @@
 #else
 #include <windows.h>
 #endif
-#define RTSPURL "rtsp://test:test@192.168.66.189/"
+#define RTSPURL "rtsp://admin:admin@anfengde.f3322.org/"
 
 #define PLAYLIST_CAPACITY	4
 #define	ALLOW_CACHE			false
