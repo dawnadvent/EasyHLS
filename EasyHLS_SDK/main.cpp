@@ -6,11 +6,7 @@
 */
 #include <stdio.h>
 #include "EasyHLSAPI.h"
-#ifndef _WIN32
-#include <unistd.h>
-#else
-#include <windows.h>
-#endif
+
 #include "hi_type.h"
 #include "hi_net_dev_sdk.h"
 #include "hi_net_dev_errors.h"
@@ -21,7 +17,6 @@
 #define CPWORD	"admin"
 
 HI_U32 u32Handle = 0;
-
 
 #define PLAYLIST_CAPACITY	4
 #define	ALLOW_CACHE			false
@@ -143,14 +138,8 @@ int main()
 
 	printf("HLS URL:%s%s/%s.m3u8", HTTP_ROOT_URL, HLS_SESSION_NAME, HLS_SESSION_NAME);
 
-	while(1)
-	{
-#ifndef _WIN32
-        usleep(10*1000);
-#else
-		Sleep(10);	
-#endif
-	};
+    printf("Press Enter exit...\n");
+    getchar();
 
     EasyHLS_Session_Release(fHlsHandle);
     fHlsHandle = 0;

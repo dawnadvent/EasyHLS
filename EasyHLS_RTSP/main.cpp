@@ -4,15 +4,10 @@
 	WEChat: EasyDarwin
 	Website: http://www.EasyDarwin.org
 */
-#define _CRTDBG_MAP_ALLOC
 #include <stdio.h>
 #include "EasyHLSAPI.h"
 #include "EasyRTSPClientAPI.h"
-#ifndef _WIN32
-#include <unistd.h>
-#else
-#include <windows.h>
-#endif
+
 #define RTSPURL "rtsp://admin:admin@anfengde.f3322.org/"
 
 #define PLAYLIST_CAPACITY	4
@@ -98,14 +93,8 @@ int main()
 
 	printf("HLS URL:%s%s/%s.m3u8\n", HTTP_ROOT_URL, HLS_SESSION_NAME, HLS_SESSION_NAME);
 
-	while(1)
-	{
-#ifndef _WIN32
-        usleep(10*1000);
-#else
-		Sleep(10);	
-#endif
-	};
+    printf("Press Enter exit...\n");
+    getchar();
 
     EasyHLS_Session_Release(fHLSHandle);
     fHLSHandle = 0;
