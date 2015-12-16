@@ -5,26 +5,42 @@
 	Website: http://www.EasyDarwin.org
 */
 #include <stdio.h>
+#include <stdlib.h>
+#ifdef _WIN32
+#include "getopt.h"
+#else
+#include "unistd.h"
+#endif
 #include "EasyHLSAPI.h"
 
 #include "hi_type.h"
 #include "hi_net_dev_sdk.h"
 #include "hi_net_dev_errors.h"
 
-#define CHOST	"192.168.66.189"	//EasyDarwin摄像机IP地址
-#define CPORT	80					//EasyDarwin摄像机端口
-#define CNAME	"admin"
-#define CPWORD	"admin"
-
+//#define CHOST	"192.168.66.189"	//EasyDarwin摄像机IP地址
+//#define CPORT	80					//EasyDarwin摄像机端口
+//#define CNAME	"admin"
+//#define CPWORD	"admin"
+//#define PLAYLIST_CAPACITY	4
+//#define	ALLOW_CACHE			false
+//#define	M3U8_VERSION		3
+//#define TARGET_DURATION		4
+//#define HLS_ROOT_DIR		"./"
+//#define HLS_SESSION_NAME	"camera"
+//#define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
 HI_U32 u32Handle = 0;
-
-#define PLAYLIST_CAPACITY	4
-#define	ALLOW_CACHE			false
-#define	M3U8_VERSION		3
-#define TARGET_DURATION		4
-#define HLS_ROOT_DIR		"./"
-#define HLS_SESSION_NAME	"camera"
-#define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
+char* ProgName;	
+int ConfigPlayListCapacity=4;
+int ConfigAllowCache=0;
+int ConfigM3U8Version=3;
+int ConfigTargetDuration=4;
+char* ConfigHLSRootDir="./";
+char* ConfigHLSessionName="camera";
+char* ConfigHttpRootUrl="http://www.easydarwin.org/easyhls/";
+char* ConfigUName	= "admin";			//SDK UserName
+char* ConfigPWD		= "admin";			//SDK Password
+char* ConfigDHost	= "192.168.66.189";	//SDK Host
+char* ConfigDPort	= "80";				//SDK Port
 
 Easy_HLS_Handle fHlsHandle = 0;
 
@@ -97,16 +113,78 @@ HI_S32 OnDataCallback(HI_U32 u32Handle, /* 句柄 */
 {
 	return HI_SUCCESS;
 }
-
-int main()
+void PrintUsage()
 {
+	printf("Usage:\n");
+	printf("------------------------------------------------------\n");
+	printf("%s [-c <PlayListCapacity> -C <AllowCache> -v <M3U8Version> -t <TargetDuration> -d <HLSRootDir> -n <HLSessionName>  -U <HttpRootUrl> -N <Device user> -P <Device password> -H <Device host> -T <Device Port>]\n", ProgName);
+	printf("Help Mode:   %s -h \n", ProgName );
+	printf("For example: %s -c 4 -C 0 -v 3 -t 4 -d ./ -n easyhls_rtsp  -U http://www.easydarwin.org/easyhls/\n -N admin -P admin -H 192.168.66.189 -T 80", ProgName); 
+	printf("------------------------------------------------------\n");
+}
+int main(int argc, char * argv[])
+{
+#ifdef _WIN32
+	extern char* optarg;
+#endif
+	int ch;
+	ProgName = argv[0];
+	PrintUsage();
+	while ((ch = getopt(argc,argv, "hc:C:v:t:d:n:U:N:P:H:T:")) != EOF) 
+	{
+		switch(ch)
+		{
+		case 'h':
+			PrintUsage();
+			return 0;
+			break;
+		case 'c':
+			ConfigPlayListCapacity =atoi(optarg);
+			break;
+		case 'C':
+			ConfigAllowCache =atoi(optarg);
+			break;
+		case 'v':
+			ConfigM3U8Version =atoi(optarg);
+			break;
+		case 't':
+			ConfigTargetDuration =atoi(optarg);
+			break;
+		case 'd':
+			ConfigHLSRootDir =optarg;
+			break;
+		case 'n':
+			ConfigHLSessionName =optarg;
+			break;
+		case 'N':
+			ConfigUName =optarg;
+			break;
+		case 'P':
+			ConfigPWD =optarg;
+			break;
+		case 'H':
+			ConfigDHost =optarg;
+			break;
+		case 'T':
+			ConfigDPort =optarg;
+			break;
+		case 'U':
+			ConfigHttpRootUrl =optarg;
+			break;
+		case '?':
+			return 0;
+			break;
+		default:
+			break;
+		}
+	}
     HI_S32 s32Ret = HI_SUCCESS;
     HI_S_STREAM_INFO struStreamInfo;
     HI_U32 a;
     
     HI_NET_DEV_Init();
     
-    s32Ret = HI_NET_DEV_Login(&u32Handle, CNAME, CPWORD, CHOST, CPORT);
+    s32Ret = HI_NET_DEV_Login(&u32Handle, ConfigUName, ConfigPWD, ConfigDHost, atoi(ConfigDPort));
     if (s32Ret != HI_SUCCESS)
     {
         HI_NET_DEV_DeInit();
@@ -130,13 +208,13 @@ int main()
 	}    
 	
 	//创建EasyHLS Session
-	fHlsHandle = EasyHLS_Session_Create(PLAYLIST_CAPACITY, ALLOW_CACHE, M3U8_VERSION);
+	fHlsHandle = EasyHLS_Session_Create(ConfigPlayListCapacity, ConfigAllowCache, ConfigM3U8Version);
 
 	char subDir[64] = { 0 };
-	sprintf(subDir,"%s/",HLS_SESSION_NAME);
-	EasyHLS_ResetStreamCache(fHlsHandle, HLS_ROOT_DIR, subDir, HLS_SESSION_NAME, TARGET_DURATION);
+	sprintf(subDir,"%s/",ConfigHLSessionName);
+	EasyHLS_ResetStreamCache(fHlsHandle, ConfigHLSRootDir, subDir, ConfigHLSessionName, ConfigTargetDuration);
 
-	printf("HLS URL:%s%s/%s.m3u8", HTTP_ROOT_URL, HLS_SESSION_NAME, HLS_SESSION_NAME);
+	printf("HLS URL:%s%s/%s.m3u8", ConfigHLSRootDir, ConfigHLSessionName, ConfigHLSessionName);
 
     printf("Press Enter exit...\n");
     getchar();

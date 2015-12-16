@@ -5,18 +5,32 @@
 	Website: http://www.EasyDarwin.org
 */
 #include <stdio.h>
+#include <stdlib.h>
 #include "EasyHLSAPI.h"
 #include "EasyRTSPClientAPI.h"
-
-#define RTSPURL "rtsp://admin:admin@anfengde.f3322.org/"
-
-#define PLAYLIST_CAPACITY	4
-#define	ALLOW_CACHE			false
-#define	M3U8_VERSION		3
-#define TARGET_DURATION		4
-#define HLS_ROOT_DIR		"./"
-#define HLS_SESSION_NAME	"easyhls_rtsp"
-#define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
+#ifdef _WIN32
+#include "getopt.h"
+#else
+#include "unistd.h"
+#endif
+//#define RTSPURL "rtsp://admin:admin@anfengde.f3322.org/"
+//
+//#define PLAYLIST_CAPACITY	4
+//#define	ALLOW_CACHE			false
+//#define	M3U8_VERSION		3
+//#define TARGET_DURATION		4
+//#define HLS_ROOT_DIR		"./"
+//#define HLS_SESSION_NAME	"easyhls_rtsp"
+//#define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
+char* ProgName;	
+char* ConfigRTSPURL="rtsp://admin:admin@anfengde.f3322.org/";
+int ConfigPlayListCapacity=4;
+int ConfigAllowCache=0;
+int ConfigM3U8Version=3;
+int ConfigTargetDuration=4;
+char* ConfigHLSRootDir="./";
+char* ConfigHLSessionName="easyhls_rtsp";
+char* ConfigHttpRootUrl="http://www.easydarwin.org/easyhls/";
 
 Easy_HLS_Handle fHLSHandle = 0;
 Easy_RTSP_Handle fRTSPHandle = 0;
@@ -60,19 +74,72 @@ int Easy_APICALL __RTSPClientCallBack( int _chid, int *_chPtr, int _frameType, c
 	{
 		if (NULL == _pBuf && NULL == _frameInfo)
 		{
-			printf("Connecting:%s ...\n", RTSPURL);
+			printf("Connecting:%s ...\n", ConfigRTSPURL);
 		}
 		else if (NULL!=_frameInfo && _frameInfo->type==0xF1)
 		{
-			printf("Lose Packet:%s ...\n", RTSPURL);
+			printf("Lose Packet:%s ...\n", ConfigRTSPURL);
 		}
 	}
 
 	return 0;
 }
-
-int main()
+void PrintUsage()
 {
+	printf("Usage:\n");
+	printf("------------------------------------------------------\n");
+	printf("%s [-c <PlayListCapacity> -C <AllowCache> -v <M3U8Version> -t <TargetDuration> -d <HLSRootDir> -n <HLSessionName> -u <RTSPURL> -U <HttpRootUrl>]\n", ProgName);
+	printf("Help Mode:   %s -h \n", ProgName );
+	printf("For example: %s -c 4 -C 0 -v 3 -t 4 -d ./ -n easyhls_rtsp -u rtsp://admin:admin@anfengde.f3322.org/22 -U http://www.easydarwin.org/easyhls/\n", ProgName); 
+	printf("------------------------------------------------------\n");
+}
+int main(int argc, char * argv[])
+{
+#ifdef _WIN32
+	extern char* optarg;
+#endif
+	int ch;
+	ProgName = argv[0];
+	PrintUsage();
+	while ((ch = getopt(argc,argv, "hc:C:v:t:d:n:u:U:")) != EOF) 
+	{
+		switch(ch)
+		{
+		case 'h':
+			PrintUsage();
+			return 0;
+			break;
+		case 'c':
+			ConfigPlayListCapacity =atoi(optarg);
+			break;
+		case 'C':
+			ConfigAllowCache =atoi(optarg);
+			break;
+		case 'v':
+			ConfigM3U8Version =atoi(optarg);
+			break;
+		case 't':
+			ConfigTargetDuration =atoi(optarg);
+			break;
+		case 'd':
+			ConfigHLSRootDir =optarg;
+			break;
+		case 'n':
+			ConfigHLSessionName =optarg;
+			break;
+		case 'u':
+			ConfigRTSPURL =optarg;
+			break;
+		case 'U':
+			ConfigHttpRootUrl =optarg;
+			break;
+		case '?':
+			return 0;
+			break;
+		default:
+			break;
+		}
+	}
 	//创建NVSource
 	EasyRTSP_Init(&fRTSPHandle);
 	if (NULL == fRTSPHandle) return 0;
@@ -82,16 +149,16 @@ int main()
 	//设置数据回调处理
 	EasyRTSP_SetCallback(fRTSPHandle, __RTSPClientCallBack);
 	//打开RTSP流
-	EasyRTSP_OpenStream(fRTSPHandle, 0, RTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
+	EasyRTSP_OpenStream(fRTSPHandle, 0, ConfigRTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
 
 	//创建EasyHLS Session
-	fHLSHandle = EasyHLS_Session_Create(PLAYLIST_CAPACITY, ALLOW_CACHE, M3U8_VERSION);
+	fHLSHandle = EasyHLS_Session_Create(ConfigPlayListCapacity, ConfigAllowCache, ConfigM3U8Version);
 
 	char subDir[64] = { 0 };
-	sprintf(subDir,"%s/",HLS_SESSION_NAME);
-	EasyHLS_ResetStreamCache(fHLSHandle, HLS_ROOT_DIR, subDir, HLS_SESSION_NAME, TARGET_DURATION);
+	sprintf(subDir,"%s/",ConfigHLSessionName);
+	EasyHLS_ResetStreamCache(fHLSHandle, ConfigHLSRootDir, subDir, ConfigHLSessionName, ConfigTargetDuration);
 
-	printf("HLS URL:%s%s/%s.m3u8\n", HTTP_ROOT_URL, HLS_SESSION_NAME, HLS_SESSION_NAME);
+	printf("HLS URL:%s%s/%s.m3u8\n", ConfigHLSRootDir, ConfigHLSessionName, ConfigHLSessionName);
 
     printf("Press Enter exit...\n");
     getchar();
