@@ -119,7 +119,7 @@ void PrintUsage()
 	printf("------------------------------------------------------\n");
 	printf("%s [-c <PlayListCapacity> -C <AllowCache> -v <M3U8Version> -t <TargetDuration> -d <HLSRootDir> -n <HLSessionName>  -U <HttpRootUrl> -N <Device user> -P <Device password> -H <Device host> -T <Device Port>]\n", ProgName);
 	printf("Help Mode:   %s -h \n", ProgName );
-	printf("For example: %s -c 4 -C 0 -v 3 -t 4 -d ./ -n easyhls_rtsp  -U http://www.easydarwin.org/easyhls/\n -N admin -P admin -H 192.168.66.189 -T 80", ProgName); 
+	printf("For example: %s -c 4 -C 0 -v 3 -t 4 -d ./ -n easyhls_rtsp  -U http://www.easydarwin.org/easyhls/ -N admin -P admin -H 192.168.66.189 -T 80\n", ProgName); 
 	printf("------------------------------------------------------\n");
 }
 int main(int argc, char * argv[])
