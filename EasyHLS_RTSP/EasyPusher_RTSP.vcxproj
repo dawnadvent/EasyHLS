@@ -14,7 +14,7 @@
     <ProjectGuid>{2C677677-3CEC-43BF-90C5-CC4246894BE5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>EasyPusher_demo</RootNamespace>
-    <ProjectName>EasyPusher_RTSP</ProjectName>
+    <ProjectName>EasyHLS_RTSP</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
