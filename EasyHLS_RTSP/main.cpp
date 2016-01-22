@@ -8,32 +8,25 @@
 #include <stdlib.h>
 #include "EasyHLSAPI.h"
 #include "EasyRTSPClientAPI.h"
+
 #ifdef _WIN32
 #include "getopt.h"
 #else
 #include "unistd.h"
 #endif
-//#define RTSPURL "rtsp://admin:admin@anfengde.f3322.org/"
-//
-//#define PLAYLIST_CAPACITY	4
-//#define	ALLOW_CACHE			false
-//#define	M3U8_VERSION		3
-//#define TARGET_DURATION		4
-//#define HLS_ROOT_DIR		"./"
-//#define HLS_SESSION_NAME	"easyhls_rtsp"
-//#define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
-char* ProgName;	
-char* ConfigRTSPURL="rtsp://admin:admin@anfengde.f3322.org/";
-int ConfigPlayListCapacity=4;
-int ConfigAllowCache=0;
-int ConfigM3U8Version=3;
-int ConfigTargetDuration=4;
-char* ConfigHLSRootDir="./";
-char* ConfigHLSessionName="easyhls_rtsp";
-char* ConfigHttpRootUrl="http://www.easydarwin.org/easyhls/";
 
-Easy_HLS_Handle fHLSHandle = 0;
-Easy_RTSP_Handle fRTSPHandle = 0;
+char*	ProgName;	
+char*	ConfigRTSPURL			= "rtsp://admin:admin@anfengde.f3322.org/";
+int		ConfigPlayListCapacity	= 4;
+int		ConfigAllowCache		= 0;
+int		ConfigM3U8Version		= 3;
+int		ConfigTargetDuration	= 4;
+char*	ConfigHLSRootDir		= "./";
+char*	ConfigHLSessionName		= "easyhls_rtsp";
+char*	ConfigHttpRootUrl		= "http://127.0.0.1/";
+
+Easy_HLS_Handle		fHLSHandle	= 0;
+Easy_RTSP_Handle	fRTSPHandle = 0;
 
 /* RTSPClient获取数据后回调给上层 */
 int Easy_APICALL __RTSPClientCallBack( int _chid, int *_chPtr, int _frameType, char *_pBuf, RTSP_FRAME_INFO *_frameInfo)
