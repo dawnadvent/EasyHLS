@@ -16,7 +16,7 @@
 #endif
 
 char*	ProgName;	
-char*	ConfigRTSPURL			= "rtsp://admin:admin@anfengde.f3322.org/";
+char*	ConfigRTSPURL			= "rtsp://admin:admin@192.168.1.189/";
 int		ConfigPlayListCapacity	= 4;
 int		ConfigAllowCache		= 0;
 int		ConfigM3U8Version		= 3;
