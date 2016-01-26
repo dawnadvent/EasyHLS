@@ -5,7 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EasyHLS_RTSP", "..\EasyHLS_
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EasyHLS_SDK", "..\EasyHLS_SDK\EasyPusher_SDK.vcxproj", "{A83368AC-FC3A-42DE-BE2E-388D4CE21E32}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EasyHLS_FILE", "..\EasyHLS_FILE\EasyPusher_FILE.vcxproj", "{121A1577-E5E0-41DD-9D9E-F1688120155A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EasyHLS_FILE", "..\EasyHLS_FILE\EasyHLS_FILE.vcxproj", "{121A1577-E5E0-41DD-9D9E-F1688120155A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
