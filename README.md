@@ -46,6 +46,8 @@ WEB：[www.EasyDarwin.org](http://www.easydarwin.org)
 
 Author：[Jason@EasyDarwin.org](mailto:Jason@EasyDarwin.org "EasyDarwin Jason")
 
+QQ交流群：[532837588](http://jq.qq.com/?_wv=1027&k=2Gj52jZ "EasyHLS")
+
 Copyright &copy; EasyDarwin.org 2012-2016
 
 ![EasyDarwin](http://www.easydarwin.org/skin/easydarwin/images/wx_qrcode.jpg)
