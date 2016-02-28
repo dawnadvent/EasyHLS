@@ -1,6 +1,6 @@
 # EasyHLS #
 
-EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非常简单，只需要传入打包的文件名、切片存放的目录、单个切片时长以及切片数等参数，EasyHLS库就能轻松将H264+AAC的流媒体切片成m3u8+ts，提供给WEB服务器进行HLS流媒体发布；
+EasyHLS是EasyDarwin开源流媒体团队成员Jason开发的一款HLS打包库，接口非常简单，只需要传入打包的文件名、切片存放的目录、单个切片时长以及切片数等参数，EasyHLS库就能轻松将H264+AAC的流媒体切片成m3u8+ts，提供给WEB服务器进行HLS流媒体发布；
 
 ## 调用示例 ##
 
@@ -44,6 +44,8 @@ unsigned long long pcr,dts,pts = timestamp\*90; 千万不要定义unsigned int�
 
 WEB：[www.EasyDarwin.org](http://www.easydarwin.org)
 
-Copyright &copy; EasyDarwin.org 2012-2015
+Author：[Jason@EasyDarwin.org](mailto:Jason@EasyDarwin.org "EasyDarwin Jason")
+
+Copyright &copy; EasyDarwin.org 2012-2016
 
 ![EasyDarwin](http://www.easydarwin.org/skin/easydarwin/images/wx_qrcode.jpg)
