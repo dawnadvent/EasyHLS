@@ -11,8 +11,12 @@
 
 #ifdef _WIN32
 #include "getopt.h"
+#define KEY ""
+#define EasyRTSPClient_KEY "6A59754D6A3469576B5A73413066565771516F6E3375394659584E355345785458314A55553141755A58686C4B56627671674434336D566863336B3D"
 #else
 #include "unistd.h"
+#define KEY ""
+#define EasyRTSPClient_KEY "6A59754D6A354F576B596F413066565771516F6E33764E6C59584E356147787A58334A306333416A56752B7141506A655A57467A65513D3D"
 #endif
 
 char*	ProgName;	
@@ -133,7 +137,11 @@ int main(int argc, char * argv[])
 			break;
 		}
 	}
-	//创建NVSource
+
+	if( EASY_ACTIVATE_SUCCESS != EasyRTSP_Activate(EasyRTSPClient_KEY))
+		return -1;
+
+	//创建EasyRTSPClient
 	EasyRTSP_Init(&fRTSPHandle);
 	if (NULL == fRTSPHandle) return 0;
 
@@ -142,7 +150,7 @@ int main(int argc, char * argv[])
 	//设置数据回调处理
 	EasyRTSP_SetCallback(fRTSPHandle, __RTSPClientCallBack);
 	//打开RTSP流
-	EasyRTSP_OpenStream(fRTSPHandle, 0, ConfigRTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0);
+	EasyRTSP_OpenStream(fRTSPHandle, 0, ConfigRTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0, 1);
 
 	//创建EasyHLS Session
 	fHLSHandle = EasyHLS_Session_Create(ConfigPlayListCapacity, ConfigAllowCache, ConfigM3U8Version);
