@@ -11,8 +11,10 @@
 
 #ifdef _WIN32
 #include "getopt.h"
+#define KEY ""
 #else
 #include "unistd.h"
+#define KEY ""
 #endif
 
 char*	ProgName;	

@@ -8,8 +8,10 @@
 #include <stdlib.h>
 #ifdef _WIN32
 #include "getopt.h"
+#define KEY ""
 #else
 #include "unistd.h"
+#define KEY ""
 #endif
 #include "EasyHLSAPI.h"
 
@@ -17,17 +19,6 @@
 #include "hi_net_dev_sdk.h"
 #include "hi_net_dev_errors.h"
 
-//#define CHOST	"192.168.66.189"	//EasyDarwin摄像机IP地址
-//#define CPORT	80					//EasyDarwin摄像机端口
-//#define CNAME	"admin"
-//#define CPWORD	"admin"
-//#define PLAYLIST_CAPACITY	4
-//#define	ALLOW_CACHE			false
-//#define	M3U8_VERSION		3
-//#define TARGET_DURATION		4
-//#define HLS_ROOT_DIR		"./"
-//#define HLS_SESSION_NAME	"camera"
-//#define HTTP_ROOT_URL		"http://www.easydarwin.org/easyhls/"
 HI_U32 u32Handle = 0;
 char* ProgName;	
 int ConfigPlayListCapacity=4;
