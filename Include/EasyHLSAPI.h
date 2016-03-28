@@ -33,6 +33,9 @@ enum{
 extern "C"
 {
 #endif
+	/* 激活 */
+	EasyHLS_API int Easy_APICALL EasyHLS_Activate(char *license);
+
 	/* 创建HLSSession  返回为句柄值 */
 	EasyHLS_API Easy_HLS_Handle Easy_APICALL EasyHLS_Session_Create(int nCapacity, bool bAllowCache, int version);
 
@@ -42,10 +45,10 @@ extern "C"
 	/* 获取具体HLSSession的m3u8文件 */
 	EasyHLS_API const char*  Easy_APICALL EasyHLS_GetM3U8File(Easy_HLS_Handle handle);
 	
-	/* 打包H264视频 */
+	/* 打包视频 */
 	EasyHLS_API int Easy_APICALL EasyHLS_VideoMux(Easy_HLS_Handle handle, unsigned int uiFrameType, unsigned char *data, int dataLength, unsigned long long pcr, unsigned long long pts, unsigned long long dts);
 	
-	/* 打包AAC音频 */
+	/* 打包音频 */
 	EasyHLS_API int Easy_APICALL EasyHLS_AudioMux(Easy_HLS_Handle handle, unsigned char *data, int dataLength, /*u64 pcr,*/ unsigned long long pts, unsigned long long dts=~0);
 
 	/* 释放HLSSession */

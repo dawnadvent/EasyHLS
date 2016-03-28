@@ -8,10 +8,10 @@
 #include <stdlib.h>
 #ifdef _WIN32
 #include "getopt.h"
-#define KEY ""
+#define KEY "333565546A4969576B5A734164506857715165453376424659584E355345785458314E455379356C6547565737366F412B4E356C59584E35"
 #else
 #include "unistd.h"
-#define KEY ""
+#define KEY "333565546A502B2B7262494164506857715165453376526C59584E356147787A58334E6B6131627671674434336D566863336B3D"
 #endif
 #include "EasyHLSAPI.h"
 
@@ -169,6 +169,10 @@ int main(int argc, char * argv[])
 			break;
 		}
 	}
+
+	if( 0 != EasyHLS_Activate(KEY))
+		return -1;
+
     HI_S32 s32Ret = HI_SUCCESS;
     HI_S_STREAM_INFO struStreamInfo;
     HI_U32 a;

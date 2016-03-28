@@ -11,10 +11,10 @@
 
 #ifdef _WIN32
 #include "getopt.h"
-#define KEY ""
+#define KEY "333565546A4969576B5A734164506857715165453375394659584E355345785458305A4A544555755A58686C4B56627671674434336D566863336B3D"
 #else
 #include "unistd.h"
-#define KEY ""
+#define KEY "333565546A4A4F576B596F41645068577151654533764E6C59584E356147787A58325A706247556A56752B7141506A655A57467A65513D3D"
 #endif
 
 char*	ProgName;	
@@ -91,6 +91,10 @@ int main(int argc, char * argv[])
 
     fES = fopen("./EasyPusher.264", "rb");
     if (NULL == fES)        return 0;
+
+	//EasyHLS SDK需要首先经过激活才能继续调用
+	if(0 != EasyHLS_Activate(KEY))
+		return -1;
 
 	//创建EasyHLS Session
 	fHLSHandle = EasyHLS_Session_Create(ConfigPlayListCapacity, ConfigAllowCache, ConfigM3U8Version);
