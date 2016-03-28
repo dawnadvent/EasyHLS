@@ -138,8 +138,30 @@ int main(int argc, char * argv[])
 		}
 	}
 
+	int isEasyHLSActivated = EasyHLS_Activate(KEY);
+	switch(isEasyHLSActivated)
+	{
+	case EASY_ACTIVATE_INVALID_KEY:
+		printf("EasyHLS_KEY is EASY_ACTIVATE_INVALID_KEY!\n");
+		break;
+	case EASY_ACTIVATE_TIME_ERR:
+		printf("EasyHLS_KEY is EASY_ACTIVATE_TIME_ERR!\n");
+		break;
+	case EASY_ACTIVATE_PROCESS_NAME_LEN_ERR:
+		printf("EasyHLS_KEY is EASY_ACTIVATE_PROCESS_NAME_LEN_ERR!\n");
+		break;
+	case EASY_ACTIVATE_PROCESS_NAME_ERR:
+		printf("EasyHLS_KEY is EASY_ACTIVATE_PROCESS_NAME_ERR!\n");
+		break;
+	case EASY_ACTIVATE_VALIDITY_PERIOD_ERR:
+		printf("EasyHLS_KEY is EASY_ACTIVATE_VALIDITY_PERIOD_ERR!\n");
+		break;
+	case EASY_ACTIVATE_SUCCESS:
+		printf("EasyHLS_KEY is EASY_ACTIVATE_SUCCESS!\n");
+		break;
+	}
 
-	if( EASY_ACTIVATE_SUCCESS != EasyHLS_Activate(KEY))
+	if(EASY_ACTIVATE_SUCCESS != isEasyHLSActivated)
 		return -1;
 
 	if( EASY_ACTIVATE_SUCCESS != EasyRTSP_Activate(EasyRTSPClient_KEY))
