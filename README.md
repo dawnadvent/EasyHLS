@@ -25,7 +25,7 @@ EasyHLS是EasyDarwin开源流媒体团队成员Jason开发的一款HLS打包库�
 
 
 ## 调用过程 ##
-![](http://www.easydarwin.org/skin/easydarwin/images/easyhls20151105.png)
+![](http://www.easydarwin.org/skin/easydarwin/images/easyhls20160328.png)
 
 
 ## 特殊说明 ##
