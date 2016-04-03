@@ -21,7 +21,7 @@ EasyHLS是EasyDarwin开源流媒体团队成员Jason开发的一款HLS打包库�
 
 - **EasyDarwin**：您也可以参考EasyDarwin中EasyHLSSession对EasyHLS库的调用方法，详细请看：[https://github.com/EasyDarwin/EasyDarwin](https://github.com/EasyDarwin/EasyDarwin "EasyDarwin")；
 
-- **我们同时提供Windows、Linux、ARM版本的libEasyHLS库**：arm版本请将交叉编译工具链发送至[support@easydarwin.org](mailto:support@easydarwin.org "EasyDarwin mail")，我们会帮您具体编译
+- **我们同时提供Windows、Linux、ARM、Android、IOS版本的libEasyHLS库**：EasyHLS SDK商业使用需要经过授权才能使用，商业授权方案： [http://www.easydss.com/EasyHLS.html](http://www.easydss.com/EasyHLS.html "EasyHLS授权")；个人及非商业用途可通过邮件发送至[support@easydarwin.org](mailto:support@easydarwin.org "EasyDarwin support mail")进行申请，注意ARM版本需要附上交叉编译工具链，我们会帮您具体编译；
 
 
 ## 调用过程 ##
@@ -44,10 +44,11 @@ unsigned long long pcr,dts,pts = timestamp\*90; 千万不要定义unsigned int�
 
 WEB：[www.EasyDarwin.org](http://www.easydarwin.org)
 
-Author：[Jason@EasyDarwin.org](mailto:Jason@EasyDarwin.org "EasyDarwin Jason")
+Author：Jason
 
 QQ交流群：[532837588](http://jq.qq.com/?_wv=1027&k=2Gj52jZ "EasyHLS")
 
 Copyright &copy; EasyDarwin.org 2012-2016
 
 ![EasyDarwin](http://www.easydarwin.org/skin/easydarwin/images/wx_qrcode.jpg)
+s
