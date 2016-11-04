@@ -60,7 +60,7 @@ LDLIBSOPTIONS=-LlibEasyRTSPClient/Lib/x64 -L../Lib/x64
 
 ../${CND_CONF}/easyhls_rtsp: ${OBJECTFILES}
 	${MKDIR} -p ../${CND_CONF}
-	${LINK.cc} -o ../${CND_CONF}/easyhls_rtsp ${OBJECTFILES} ${LDLIBSOPTIONS} -leasyrtspclient -leasyhls -lpthread
+	${LINK.cc} -o ../${CND_CONF}/easyhls_rtsp ${OBJECTFILES} ${LDLIBSOPTIONS} -lrt -leasyrtspclient -leasyhls -lpthread
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
