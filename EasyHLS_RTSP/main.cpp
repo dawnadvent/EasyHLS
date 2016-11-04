@@ -33,7 +33,7 @@ Easy_HLS_Handle		fHLSHandle	= 0;
 Easy_RTSP_Handle	fRTSPHandle = 0;
 
 /* RTSPClient获取数据后回调给上层 */
-int Easy_APICALL __RTSPClientCallBack( int _chid, int *_chPtr, int _frameType, char *_pBuf, RTSP_FRAME_INFO *_frameInfo)
+int Easy_APICALL __RTSPClientCallBack( int _chid, void *_chPtr, int _frameType, char *_pBuf, RTSP_FRAME_INFO *_frameInfo)
 {
 	if(NULL == fHLSHandle) return -1;
 
@@ -176,7 +176,7 @@ int main(int argc, char * argv[])
 	//设置数据回调处理
 	EasyRTSP_SetCallback(fRTSPHandle, __RTSPClientCallBack);
 	//打开RTSP流
-	EasyRTSP_OpenStream(fRTSPHandle, 0, ConfigRTSPURL, RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0, 1);
+	EasyRTSP_OpenStream(fRTSPHandle, 0, ConfigRTSPURL, EASY_RTP_OVER_TCP, mediaType, 0, 0, NULL, 1000, 0, 0x01, 1);
 
 	//创建EasyHLS Session
 	fHLSHandle = EasyHLS_Session_Create(ConfigPlayListCapacity, ConfigAllowCache, ConfigM3U8Version);
