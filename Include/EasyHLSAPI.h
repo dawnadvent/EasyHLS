@@ -9,6 +9,8 @@
 
 #include "EasyTypes.h"
 
+#define	EasyHLS_Version	"EasyHLS v1.0.16.1105"
+
 enum{
 	TS_TYPE_PAT = 0x01000000,
 	TS_TYPE_PMT = 0x02000000,
