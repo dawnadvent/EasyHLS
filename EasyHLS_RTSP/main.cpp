@@ -20,11 +20,12 @@
 #endif
 
 char*	ProgName;	
-char*	ConfigRTSPURL			= "rtsp://admin:admin@192.168.66.222/11";
+char*	ConfigRTSPURL			= "rtsp://admin:12345@192.168.70.210";
 int		ConfigPlayListCapacity	= 4;
 int		ConfigAllowCache		= 0;
 int		ConfigM3U8Version		= 3;
 int		ConfigTargetDuration	= 4;
+int		ConfigFirtTSIFrameCount = 3;
 char*	ConfigHLSRootDir		= "./";
 char*	ConfigHLSessionName		= "easyhls_rtsp";
 char*	ConfigHttpRootUrl		= "http://127.0.0.1/";
@@ -85,9 +86,9 @@ void PrintUsage()
 {
 	printf("Usage:\n");
 	printf("------------------------------------------------------\n");
-	printf("%s [-c <PlayListCapacity> -C <AllowCache> -v <M3U8Version> -t <TargetDuration> -d <HLSRootDir> -n <HLSessionName> -u <RTSPURL> -U <HttpRootUrl>]\n", ProgName);
+	printf("%s [-c <PlayListCapacity> -C <AllowCache> -v <M3U8Version> -t <TargetDuration> -i <FirstTSIFrameCount> -d <HLSRootDir> -n <HLSessionName> -u <RTSPURL> -U <HttpRootUrl>]\n", ProgName);
 	printf("Help Mode:   %s -h \n", ProgName );
-	printf("For example: %s -c 4 -C 0 -v 3 -t 4 -d ./ -n easyhls_rtsp -u rtsp://admin:admin@anfengde.f3322.org/22 -U http://www.easydarwin.org/easyhls/\n", ProgName); 
+	printf("For example: %s -c 4 -C 0 -v 3 -t 4 -i 3 -d ./ -n easyhls_rtsp -u rtsp://admin:admin@anfengde.f3322.org/22 -U http://www.easydarwin.org/easyhls/\n", ProgName); 
 	printf("------------------------------------------------------\n");
 }
 int main(int argc, char * argv[])
@@ -98,7 +99,7 @@ int main(int argc, char * argv[])
 	int ch;
 	ProgName = argv[0];
 	PrintUsage();
-	while ((ch = getopt(argc,argv, "hc:C:v:t:d:n:u:U:")) != EOF) 
+	while ((ch = getopt(argc,argv, "hc:C:v:t:i:d:n:u:U:")) != EOF) 
 	{
 		switch(ch)
 		{
@@ -117,6 +118,9 @@ int main(int argc, char * argv[])
 			break;
 		case 't':
 			ConfigTargetDuration =atoi(optarg);
+			break;
+		case 'i':
+			ConfigFirtTSIFrameCount = atoi(optarg);
 			break;
 		case 'd':
 			ConfigHLSRootDir =optarg;
@@ -183,7 +187,7 @@ int main(int argc, char * argv[])
 
 	char subDir[64] = { 0 };
 	sprintf(subDir,"%s/",ConfigHLSessionName);
-	EasyHLS_ResetStreamCache(fHLSHandle, ConfigHLSRootDir, subDir, ConfigHLSessionName, ConfigTargetDuration);
+	EasyHLS_ResetStreamCache(fHLSHandle, ConfigHLSRootDir, subDir, ConfigHLSessionName, ConfigTargetDuration, ConfigFirtTSIFrameCount);
 
 	printf("HLS URL:%s%s/%s.m3u8\n", ConfigHLSRootDir, ConfigHLSessionName, ConfigHLSessionName);
 

@@ -32,8 +32,8 @@ extern "C"
 	/* 创建HLSSession  返回为句柄值 */
 	Easy_API Easy_HLS_Handle Easy_APICALL EasyHLS_Session_Create(int nCapacity, bool bAllowCache, int version);
 
-	/* 设置HLS参数 strRootDir:以/结尾根目录 strSubDir:以/结尾子目录 strMediaName:媒体名称、nTargetDuration:单个切片时间 */
-	Easy_API void Easy_APICALL EasyHLS_ResetStreamCache(Easy_HLS_Handle handle, const char * strRootDir, const char* strSubDir, const char* strMediaName, int nTargetDuration);
+	/* 设置HLS参数 strRootDir:以/结尾根目录 strSubDir:以/结尾子目录 strMediaName:媒体名称、nTargetDuration:单个切片时间 nFirstTSIFrameCount生成第一个TS切片的I帧数量默认按时间生成*/
+	Easy_API void Easy_APICALL EasyHLS_ResetStreamCache(Easy_HLS_Handle handle, const char * strRootDir, const char* strSubDir, const char* strMediaName, int nTargetDuration, int nFirstTSIFrameCount = 0);
 	
 	/* 获取具体HLSSession的m3u8文件 */
 	Easy_API const char*  Easy_APICALL EasyHLS_GetM3U8File(Easy_HLS_Handle handle);
