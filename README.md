@@ -19,9 +19,7 @@ EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非
 		./Buildit
 	> 调用提示：目前的调用示例程序，可以接收参数，具体参数的使用，请在调用时增加**-h**命令查阅。
 
-- **EasyDarwin**：您也可以参考EasyDarwin中EasyHLSSession对EasyHLS库的调用方法，详细请看：[https://github.com/EasyDarwin/EasyDarwin](https://github.com/EasyDarwin/EasyDarwin "EasyDarwin")；
-
-- **我们同时提供Windows、Linux、ARM、Android、IOS版本的libEasyHLS库**：EasyHLS SDK商业使用需要经过授权才能永久使用，商业授权方案细节： [http://www.easydss.com/EasyHLS.html](http://www.easydss.com/EasyHLS.html "EasyHLS授权")；个人及非商业用途可通过[https://github.com/EasyDarwin/Tools](https://github.com/EasyDarwin/Tools "EasyDarwin Tools")中的**EasyDarwin SDK License生成工具**生成临时License使用，或者可以邮件发送至[support@easydarwin.org](mailto:support@easydarwin.org "EasyDarwin support mail")进行更深入的合作咨询，注意ARM版本需要附上交叉编译工具链，我们会帮您具体编译；
+- **我们同时提供Windows、Linux、ARM、Android、IOS版本的libEasyHLS库**：EasyHLS SDK商业使用需要经过授权才能永久使用，商业授权方案可以邮件发送至[support@easydarwin.org](mailto:support@easydarwin.org "EasyDarwin support mail")或者通过电话Tel：**13718530929** 进行更深入的技术与合作咨询；
 
 
 ## 调用过程 ##
@@ -48,6 +46,6 @@ Author：Jason
 
 QQ交流群：[532837588](http://jq.qq.com/?_wv=1027&k=2Gj52jZ "EasyHLS")
 
-Copyright &copy; EasyDarwin.org 2012-2016
+Copyright &copy; EasyDarwin.org 2012-2017
 
 ![EasyDarwin](http://www.easydarwin.org/skin/easydarwin/images/wx_qrcode.jpg)
