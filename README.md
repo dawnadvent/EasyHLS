@@ -17,7 +17,7 @@ EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非
 		
 		chmod +x ./Buildit
 		./Buildit
-	> 调用提示：目前的调用示例程序，可以接收参数，具体参数的使用，请在调用时增加**-h**命令查阅。
+	> 调用提示：目前的调用示例程序，可以接收参数，具体参数的使用，请在调用时增加 **-h** 命令查阅。
 
 - **我们同时提供Windows、Linux、ARM、Android、IOS版本的libEasyHLS库**：EasyHLS SDK商业使用需要经过授权才能永久使用，商业授权方案可以邮件发送至[support@easydarwin.org](mailto:support@easydarwin.org "EasyDarwin support mail")或者通过电话Tel：**13718530929** 进行更深入的技术与合作咨询；
 
