@@ -6,7 +6,7 @@ EasyHLS是EasyDarwin开源流媒体团队开发的一款HLS打包库，接口非
 
 - **EasyHLS_RTSP**：通过RTSPClient将RTSP摄像机IPCamera的流媒体音视频数据流获取到本地，再进行ts的音视频封装打包，并不断更新m3u8列表，以提供HLS直播功能；
 
-- **EasyHLS_SDK**： 通过调用私有SDK回调的音视频数据，进行ts打包，提供HLS直播，示例中的SDK是我们EasyDarwin开源摄像机的配套库，EasyDarwin开源摄像机硬件可以在：[https://easydarwin.taobao.com/](https://easydarwin.taobao.com/ "EasyCamera")购买，EasyCamera SDK及配套源码可在 [http://www.easydarwin.org](http://www.easydarwin.org "EasyDarwin") 或者 [https://github.com/EasyDarwin/EasyCamera](https://github.com/EasyDarwin/EasyCamera "EasyCamera") 获取到，您也可以用自己项目中用到的SDK获取音视频数据进行打包；
+- **EasyHLS_SDK**： 通过调用私有SDK回调的音视频数据，进行ts打包，您也可以用自己项目中用到的SDK获取音视频数据进行打包；
 
 
 	Windows编译方法，
@@ -41,8 +41,6 @@ unsigned long long pcr,dts,pts = timestamp\*90; 千万不要定义unsigned int�
 邮件：[support@easydarwin.org](mailto:support@easydarwin.org) 
 
 WEB：[www.EasyDarwin.org](http://www.easydarwin.org)
-
-Author：Jason
 
 QQ交流群：[532837588](http://jq.qq.com/?_wv=1027&k=2Gj52jZ "EasyHLS")
 
