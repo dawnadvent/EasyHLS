@@ -39,8 +39,6 @@ unsigned long long pcr,dts,pts = timestamp\*90; 千万不要定义unsigned int�
 
 - 邮件：[support@easydarwin.org](mailto:support@easydarwin.org) 
 
-- Tel：13718530929
-
 - QQ交流群：<a href="https://jq.qq.com/?_wv=1027&k=5fm9nKk" title="EasyHLS" target="_blank">**532837588**</a>
 
 > **我们同时提供Windows、Linux、Android、iOS、ARM版本的EasyRTMPClient库**：EasyRTMPClient SDK商业使用需要经过授权才能永久使用，商业授权方案可以通过以上渠道进行更深入的技术与合作咨询；
