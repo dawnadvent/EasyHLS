@@ -8,10 +8,10 @@
 #include <stdlib.h>
 #ifdef _WIN32
 #include "getopt.h"
-#define KEY "333565546A4969576B5A754144766C5A706762774576424659584E355345785458314E455379356C65475658444661672F704C67523246326157346D516D466962334E68514449774D545A4659584E355247467964326C75564756686257566863336B3D"
+#define KEY "333565546A4969576B5A75415A6574627042535A792F424659584E355345785458314E455379356C65475658444661672F30766A5257467A65555268636E6470626C526C5957314A6331526F5A554A6C633352414D6A41784F47566863336B3D"
 #else
 #include "unistd.h"
-#define KEY "333565546A4A4F576B596F417666645A706768426B76526C59584E356147787A58334E6B6131634D5671442B6B75424859585A7062695A4359574A76633246414D6A41784E6B566863336C4559584A33615735555A5746745A57467A65513D3D"
+#define KEY "333565546A4A4F576B59714144474A636F35337A4A66526C59584E356147787A58334E6B6131634D5671442F70654E4659584E355247467964326C755647566862556C7A5647686C516D567A644541794D4445345A57467A65513D3D"
 #endif
 #include "EasyHLSAPI.h"
 
@@ -36,20 +36,20 @@ char* ConfigDPort	= "80";				//SDK Port
 Easy_HLS_Handle fHlsHandle = 0;
 
 
-HI_S32 OnEventCallback(HI_U32 u32Handle, /* ¾ä±ú */
-                                HI_U32 u32Event,      /* ÊÂ¼þ */
-                                HI_VOID* pUserData  /* ÓÃ»§Êý¾Ý*/
+HI_S32 OnEventCallback(HI_U32 u32Handle, /* ï¿½ï¿½ï¿½ */
+                                HI_U32 u32Event,      /* ï¿½Â¼ï¿½ */
+                                HI_VOID* pUserData  /* ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½*/
                                 )
 {
 	return HI_SUCCESS;
 }
 
 
-HI_S32 NETSDK_APICALL OnStreamCallback(HI_U32 u32Handle, /* ¾ä±ú */
-                                HI_U32 u32DataType,     /* Êý¾ÝÀàÐÍ£¬ÊÓÆµ»òÒôÆµÊý¾Ý»òÒôÊÓÆµ¸´ºÏÊý¾Ý */
-                                HI_U8*  pu8Buffer,      /* Êý¾Ý°üº¬Ö¡Í· */
-                                HI_U32 u32Length,      /* Êý¾Ý³¤¶È */
-                                HI_VOID* pUserData    /* ÓÃ»§Êý¾Ý*/
+HI_S32 NETSDK_APICALL OnStreamCallback(HI_U32 u32Handle, /* ï¿½ï¿½ï¿½ */
+                                HI_U32 u32DataType,     /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
+                                HI_U8*  pu8Buffer,      /* ï¿½ï¿½ï¿½Ý°ï¿½ï¿½ï¿½Ö¡Í· */
+                                HI_U32 u32Length,      /* ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ */
+                                HI_VOID* pUserData    /* ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½*/
                                 )
 {
 
@@ -95,11 +95,11 @@ HI_S32 NETSDK_APICALL OnStreamCallback(HI_U32 u32Handle, /* ¾ä±ú */
 	return HI_SUCCESS;
 }
 
-HI_S32 OnDataCallback(HI_U32 u32Handle, /* ¾ä±ú */
-                                HI_U32 u32DataType,       /* Êý¾ÝÀàÐÍ*/
-                                HI_U8*  pu8Buffer,      /* Êý¾Ý */
-                                HI_U32 u32Length,      /* Êý¾Ý³¤¶È */
-                                HI_VOID* pUserData    /* ÓÃ»§Êý¾Ý*/
+HI_S32 OnDataCallback(HI_U32 u32Handle, /* ï¿½ï¿½ï¿½ */
+                                HI_U32 u32DataType,       /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+                                HI_U8*  pu8Buffer,      /* ï¿½ï¿½ï¿½ï¿½ */
+                                HI_U32 u32Length,      /* ï¿½ï¿½ï¿½Ý³ï¿½ï¿½ï¿½ */
+                                HI_VOID* pUserData    /* ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½*/
                                 )
 {
 	return HI_SUCCESS;
@@ -202,7 +202,7 @@ int main(int argc, char * argv[])
 		return -1;
 	}    
 	
-	//´´½¨EasyHLS Session
+	//ï¿½ï¿½ï¿½ï¿½EasyHLS Session
 	fHlsHandle = EasyHLS_Session_Create(ConfigPlayListCapacity, ConfigAllowCache, ConfigM3U8Version);
 
 	char subDir[64] = { 0 };
